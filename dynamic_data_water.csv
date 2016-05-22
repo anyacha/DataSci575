@@ -1,0 +1,523 @@
+source,target,value
+null,geo,-1
+geo,Iringa,-1
+geo,Mara,-1
+geo,Manyara,-1
+geo,Mtwara,-1
+geo,Kagera,-1
+geo,Tanga,-1
+geo,Shinyanga,-1
+geo,Tabora,-1
+geo,Pwani,-1
+geo,Ruvuma,-1
+geo,Kilimanjaro,-1
+geo,Rukwa,-1
+geo,Mwanza,-1
+geo,Kigoma,-1
+geo,Lindi,-1
+geo,Dodoma,-1
+geo,Arusha,-1
+geo,Mbeya,-1
+geo,Singida,-1
+geo,Morogoro,-1
+geo,Dar es Salaam,-1
+Iringa,Ludewa,-1
+Iringa,Njombe,-1
+Iringa,Kilolo,-1
+Iringa,Makete,-1
+Iringa,Iringa Rural,-1
+Iringa,Mufindi,-1
+Mara,Serengeti,-1
+Mara,Musoma Rural,-1
+Mara,Bunda,-1
+Mara,Tarime,-1
+Mara,Rorya,-1
+Manyara,Simanjiro,-1
+Manyara,Mbulu,-1
+Manyara,Hanang,-1
+Manyara,Kiteto,-1
+Manyara,Babati,-1
+Mtwara,Nanyumbu,-1
+Mtwara,Masasi,-1
+Mtwara,Mtwara Rural,-1
+Mtwara,Newala,-1
+Mtwara,Tandahimba,-1
+Mtwara,Mtwara Urban,-1
+Kagera,Karagwe,-1
+Kagera,Bukoba Rural,-1
+Kagera,Bukoba Urban,-1
+Kagera,Muleba,-1
+Kagera,Misenyi,-1
+Kagera,Chato,-1
+Kagera,Biharamulo,-1
+Kagera,Ngara,-1
+Tanga,Mkinga,-1
+Tanga,Muheza,-1
+Tanga,Lushoto,-1
+Tanga,Korogwe,-1
+Tanga,Tanga,-1
+Tanga,Handeni,-1
+Tanga,Pangani,-1
+Tanga,Kilindi,-1
+Shinyanga,Shinyanga Rural,-1
+Shinyanga,Kahama,-1
+Shinyanga,Maswa,-1
+Shinyanga,Meatu,-1
+Shinyanga,Bariadi,-1
+Shinyanga,Bukombe,-1
+Shinyanga,Kishapu,-1
+Shinyanga,Shinyanga Urban,-1
+Tabora,Tabora Urban,-1
+Tabora,Urambo,-1
+Tabora,Sikonge,-1
+Tabora,Igunga,-1
+Tabora,Nzega,-1
+Tabora,Uyui,-1
+Pwani,Mkuranga,-1
+Pwani,Bagamoyo,-1
+Pwani,Mafia,-1
+Pwani,Kibaha,-1
+Pwani,Kisarawe,-1
+Pwani,Rufiji,-1
+Ruvuma,Namtumbo,-1
+Ruvuma,Songea Rural,-1
+Ruvuma,Tunduru,-1
+Ruvuma,Mbinga,-1
+Ruvuma,Songea Urban,-1
+Kilimanjaro,Siha,-1
+Kilimanjaro,Same,-1
+Kilimanjaro,Moshi Rural,-1
+Kilimanjaro,Rombo,-1
+Kilimanjaro,Moshi Urban,-1
+Kilimanjaro,Hai,-1
+Kilimanjaro,Mwanga,-1
+Rukwa,Sumbawanga Rural,-1
+Rukwa,Mpanda,-1
+Rukwa,Nkasi,-1
+Rukwa,Sumbawanga Urban,-1
+Mwanza,Ukerewe,-1
+Mwanza,Geita,-1
+Mwanza,Sengerema,-1
+Mwanza,Missungwi,-1
+Mwanza,Magu,-1
+Mwanza,Kwimba,-1
+Mwanza,Ilemela,-1
+Mwanza,Nyamagana,-1
+Kigoma,Kigoma Rural,-1
+Kigoma,Kibondo,-1
+Kigoma,Kasulu,-1
+Kigoma,Kigoma Urban,-1
+Lindi,Lindi Rural,-1
+Lindi,Ruangwa,-1
+Lindi,Kilwa,-1
+Lindi,Liwale,-1
+Lindi,Lindi Urban,-1
+Lindi,Nachingwea,-1
+Dodoma,Chamwino,-1
+Dodoma,Kondoa,-1
+Dodoma,Dodoma Urban,-1
+Dodoma,Mpwapwa,-1
+Dodoma,Bahi,-1
+Dodoma,Kongwa,-1
+Arusha,Arusha Rural,-1
+Arusha,Meru,-1
+Arusha,Longido,-1
+Arusha,Karatu,-1
+Arusha,Monduli,-1
+Arusha,Ngorongoro,-1
+Arusha,Arusha Urban,-1
+Mbeya,Kyela,-1
+Mbeya,Rungwe,-1
+Mbeya,Mbarali,-1
+Mbeya,Ileje,-1
+Mbeya,Mbozi,-1
+Mbeya,Mbeya Rural,-1
+Mbeya,Chunya,-1
+Singida,Singida Rural,-1
+Singida,Iramba,-1
+Singida,Manyoni,-1
+Singida,Singida Urban,-1
+Morogoro,Kilombero,-1
+Morogoro,Morogoro Rural,-1
+Morogoro,Mvomero,-1
+Morogoro,Kilosa,-1
+Morogoro,Ulanga,-1
+Morogoro,Morogoro Urban,-1
+Dar es Salaam,Ilala,-1
+Dar es Salaam,Temeke,-1
+Dar es Salaam,Kinondoni,-1
+Ludewa,10,0
+Ludewa,3,1
+Ludewa,8,2
+Njombe,10,0
+Njombe,3,1
+Njombe,8,2
+Kilolo,10,0
+Kilolo,3,1
+Kilolo,8,2
+Makete,10,0
+Makete,3,1
+Makete,8,2
+Iringa Rural,10,0
+Iringa Rural,3,1
+Iringa Rural,8,2
+Mufindi,10,0
+Mufindi,3,1
+Mufindi,8,2
+Serengeti,10,0
+Serengeti,3,1
+Serengeti,8,2
+Musoma Rural,10,0
+Musoma Rural,3,1
+Musoma Rural,8,2
+Bunda,10,0
+Bunda,3,1
+Bunda,8,2
+Tarime,10,0
+Tarime,3,1
+Tarime,8,2
+Rorya,10,0
+Rorya,3,1
+Rorya,8,2
+Simanjiro,10,0
+Simanjiro,3,1
+Simanjiro,8,2
+Mbulu,10,0
+Mbulu,3,1
+Mbulu,8,2
+Hanang,10,0
+Hanang,3,1
+Hanang,8,2
+Kiteto,10,0
+Kiteto,3,1
+Kiteto,8,2
+Babati,10,0
+Babati,3,1
+Babati,8,2
+Nanyumbu,10,0
+Nanyumbu,3,1
+Nanyumbu,8,2
+Masasi,10,0
+Masasi,3,1
+Masasi,8,2
+Mtwara Rural,10,0
+Mtwara Rural,3,1
+Mtwara Rural,8,2
+Newala,10,0
+Newala,3,1
+Newala,8,2
+Tandahimba,10,0
+Tandahimba,3,1
+Tandahimba,8,2
+Mtwara Urban,10,0
+Mtwara Urban,3,1
+Mtwara Urban,8,2
+Karagwe,10,0
+Karagwe,3,1
+Karagwe,8,2
+Bukoba Rural,10,0
+Bukoba Rural,3,1
+Bukoba Rural,8,2
+Bukoba Urban,10,0
+Bukoba Urban,3,1
+Bukoba Urban,8,2
+Muleba,10,0
+Muleba,3,1
+Muleba,8,2
+Misenyi,10,0
+Misenyi,3,1
+Misenyi,8,2
+Chato,10,0
+Chato,3,1
+Chato,8,2
+Biharamulo,10,0
+Biharamulo,3,1
+Biharamulo,8,2
+Ngara,10,0
+Ngara,3,1
+Ngara,8,2
+Mkinga,10,0
+Mkinga,3,1
+Mkinga,8,2
+Muheza,10,0
+Muheza,3,1
+Muheza,8,2
+Lushoto,10,0
+Lushoto,3,1
+Lushoto,8,2
+Korogwe,10,0
+Korogwe,3,1
+Korogwe,8,2
+Tanga,10,0
+Tanga,3,1
+Tanga,8,2
+Handeni,10,0
+Handeni,3,1
+Handeni,8,2
+Pangani,10,0
+Pangani,3,1
+Pangani,8,2
+Kilindi,10,0
+Kilindi,3,1
+Kilindi,8,2
+Shinyanga Rural,10,0
+Shinyanga Rural,3,1
+Shinyanga Rural,8,2
+Kahama,10,0
+Kahama,3,1
+Kahama,8,2
+Maswa,10,0
+Maswa,3,1
+Maswa,8,2
+Meatu,10,0
+Meatu,3,1
+Meatu,8,2
+Bariadi,10,0
+Bariadi,3,1
+Bariadi,8,2
+Bukombe,10,0
+Bukombe,3,1
+Bukombe,8,2
+Kishapu,10,0
+Kishapu,3,1
+Kishapu,8,2
+Shinyanga Urban,10,0
+Shinyanga Urban,3,1
+Shinyanga Urban,8,2
+Tabora Urban,10,0
+Tabora Urban,3,1
+Tabora Urban,8,2
+Urambo,10,0
+Urambo,3,1
+Urambo,8,2
+Sikonge,10,0
+Sikonge,3,1
+Sikonge,8,2
+Igunga,10,0
+Igunga,3,1
+Igunga,8,2
+Nzega,10,0
+Nzega,3,1
+Nzega,8,2
+Uyui,10,0
+Uyui,3,1
+Uyui,8,2
+Mkuranga,10,0
+Mkuranga,3,1
+Mkuranga,8,2
+Bagamoyo,10,0
+Bagamoyo,3,1
+Bagamoyo,8,2
+Mafia,10,0
+Mafia,3,1
+Mafia,8,2
+Kibaha,10,0
+Kibaha,3,1
+Kibaha,8,2
+Kisarawe,10,0
+Kisarawe,3,1
+Kisarawe,8,2
+Rufiji,10,0
+Rufiji,3,1
+Rufiji,8,2
+Namtumbo,10,0
+Namtumbo,3,1
+Namtumbo,8,2
+Songea Rural,10,0
+Songea Rural,3,1
+Songea Rural,8,2
+Tunduru,10,0
+Tunduru,3,1
+Tunduru,8,2
+Mbinga,10,0
+Mbinga,3,1
+Mbinga,8,2
+Songea Urban,10,0
+Songea Urban,3,1
+Songea Urban,8,2
+Siha,10,0
+Siha,3,1
+Siha,8,2
+Same,10,0
+Same,3,1
+Same,8,2
+Moshi Rural,10,0
+Moshi Rural,3,1
+Moshi Rural,8,2
+Rombo,10,0
+Rombo,3,1
+Rombo,8,2
+Moshi Urban,10,0
+Moshi Urban,3,1
+Moshi Urban,8,2
+Hai,10,0
+Hai,3,1
+Hai,8,2
+Mwanga,10,0
+Mwanga,3,1
+Mwanga,8,2
+Sumbawanga Rural,10,0
+Sumbawanga Rural,3,1
+Sumbawanga Rural,8,2
+Mpanda,10,0
+Mpanda,3,1
+Mpanda,8,2
+Nkasi,10,0
+Nkasi,3,1
+Nkasi,8,2
+Sumbawanga Urban,10,0
+Sumbawanga Urban,3,1
+Sumbawanga Urban,8,2
+Ukerewe,10,0
+Ukerewe,3,1
+Ukerewe,8,2
+Geita,10,0
+Geita,3,1
+Geita,8,2
+Sengerema,10,0
+Sengerema,3,1
+Sengerema,8,2
+Missungwi,10,0
+Missungwi,3,1
+Missungwi,8,2
+Magu,10,0
+Magu,3,1
+Magu,8,2
+Kwimba,10,0
+Kwimba,3,1
+Kwimba,8,2
+Ilemela,10,0
+Ilemela,3,1
+Ilemela,8,2
+Nyamagana,10,0
+Nyamagana,3,1
+Nyamagana,8,2
+Kigoma Rural,10,0
+Kigoma Rural,3,1
+Kigoma Rural,8,2
+Kibondo,10,0
+Kibondo,3,1
+Kibondo,8,2
+Kasulu,10,0
+Kasulu,3,1
+Kasulu,8,2
+Kigoma Urban,10,0
+Kigoma Urban,3,1
+Kigoma Urban,8,2
+Lindi Rural,10,0
+Lindi Rural,3,1
+Lindi Rural,8,2
+Ruangwa,10,0
+Ruangwa,3,1
+Ruangwa,8,2
+Kilwa,10,0
+Kilwa,3,1
+Kilwa,8,2
+Liwale,10,0
+Liwale,3,1
+Liwale,8,2
+Lindi Urban,10,0
+Lindi Urban,3,1
+Lindi Urban,8,2
+Nachingwea,10,0
+Nachingwea,3,1
+Nachingwea,8,2
+Chamwino,10,0
+Chamwino,3,1
+Chamwino,8,2
+Kondoa,10,0
+Kondoa,3,1
+Kondoa,8,2
+Dodoma Urban,10,0
+Dodoma Urban,3,1
+Dodoma Urban,8,2
+Mpwapwa,10,0
+Mpwapwa,3,1
+Mpwapwa,8,2
+Bahi,10,0
+Bahi,3,1
+Bahi,8,2
+Kongwa,10,0
+Kongwa,3,1
+Kongwa,8,2
+Arusha Rural,10,0
+Arusha Rural,3,1
+Arusha Rural,8,2
+Meru,10,0
+Meru,3,1
+Meru,8,2
+Longido,10,0
+Longido,3,1
+Longido,8,2
+Karatu,10,0
+Karatu,3,1
+Karatu,8,2
+Monduli,10,0
+Monduli,3,1
+Monduli,8,2
+Ngorongoro,10,0
+Ngorongoro,3,1
+Ngorongoro,8,2
+Arusha Urban,10,0
+Arusha Urban,3,1
+Arusha Urban,8,2
+Kyela,10,0
+Kyela,3,1
+Kyela,8,2
+Rungwe,10,0
+Rungwe,3,1
+Rungwe,8,2
+Mbarali,10,0
+Mbarali,3,1
+Mbarali,8,2
+Ileje,10,0
+Ileje,3,1
+Ileje,8,2
+Mbozi,10,0
+Mbozi,3,1
+Mbozi,8,2
+Mbeya Rural,10,0
+Mbeya Rural,3,1
+Mbeya Rural,8,2
+Chunya,10,0
+Chunya,3,1
+Chunya,8,2
+Singida Rural,10,0
+Singida Rural,3,1
+Singida Rural,8,2
+Iramba,10,0
+Iramba,3,1
+Iramba,8,2
+Manyoni,10,0
+Manyoni,3,1
+Manyoni,8,2
+Singida Urban,10,0
+Singida Urban,3,1
+Singida Urban,8,2
+Kilombero,10,0
+Kilombero,3,1
+Kilombero,8,2
+Morogoro Rural,10,0
+Morogoro Rural,3,1
+Morogoro Rural,8,2
+Mvomero,10,0
+Mvomero,3,1
+Mvomero,8,2
+Kilosa,10,0
+Kilosa,3,1
+Kilosa,8,2
+Ulanga,10,0
+Ulanga,3,1
+Ulanga,8,2
+Morogoro Urban,10,0
+Morogoro Urban,3,1
+Morogoro Urban,8,2
+Ilala,10,0
+Ilala,3,1
+Ilala,8,2
+Temeke,10,0
+Temeke,3,1
+Temeke,8,2
+Kinondoni,10,0
+Kinondoni,3,1
+Kinondoni,8,2
