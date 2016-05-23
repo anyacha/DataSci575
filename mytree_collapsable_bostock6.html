@@ -18,29 +18,40 @@
 
 .link {
   fill: none;
-  stroke: #ccc;
+  //stroke: #ccc;
   stroke-width: 1.5px;
 }
 
 </style>
 <body>
+  <h2>Water points by Region and LGA: aggregated by status</h2>
+  <h4>Starts from full tree, collapsable nodes<h4>
 <script src="//d3js.org/d3.v3.min.js"></script>
-<script>
-/* v5.  
-previously: in  mytree_collapsable_bostock4.html
-swith to water with value csv file, display node values by 3 classificaiton colors
-similar to POC in myTree_from_csv_bostock.html
 
-this version: get real data, no more mockups
-next: add next level
+<script>
+/* v6.  
+previously: in  mytree_collapsable_bostock5.html
+get real data, no more mockups
+have 2 levels: region and LGA
+final nodes: dynamic size and color
+final links: dynamic color for 0
+
+this version: add transitions (comment out ) line //root.children.forEach(collapse);
+made many little changes per src: http://bl.ocks.org/tchaymore/1249394
+didn't know what makes the animation
+have 2 duraitons: 1 faster for expanding nodes, 2 takes longer to draw colored circles; cool effect 
+
+next: now that i know what makes the animation happen,
+can return to v5 and only do that change.
 
 */
 var margin = {top: 20, right: 120, bottom: 20, left: 120},
     width = 960 - margin.right - margin.left,
-    height = 800 - margin.top - margin.bottom;
+    height = 3000 - margin.top - margin.bottom;
 
 var i = 0,
-    duration = 750,
+    duration = 500,
+    duration1=1800,
     root;
 
 var tree = d3.layout.tree()
@@ -117,7 +128,8 @@ d3.csv("dynamic_data_water.csv", function(error, water) {
     }
   }
 
-  root.children.forEach(collapse);
+console.log("root.children: ", root.children)
+  //root.children.forEach(collapse);
   update(root);
 });
 
@@ -140,29 +152,64 @@ function update(source) {
   var nodeEnter = node.enter().append("g")
       .attr("class", "node")
       .attr("transform", function(d) { return "translate(" + source.y0 + "," + source.x0 + ")"; })
-      .on("click", click);
+      //.on("click", click) $acwas
+      ;
 
   nodeEnter.append("circle")
-      .attr("r", 1e-6)
-      .style("fill", function(d) { return d._children ? "lightsteelblue" : "#fff"; });
+      //.attr("r", 1e-6)
+      .attr("r", 4.5)
+      .style("fill", function(d) { return d._children ? "lightsteelblue" : "#fff"; })
+      .on("click", click) //$acnow
+      ;
 
   nodeEnter.append("text")
       .attr("x", function(d) { return d.children || d._children ? -10 : 10; })
       .attr("dy", ".35em")
       .attr("text-anchor", function(d) { return d.children || d._children ? "end" : "start"; })
       .text(function(d) { return d.target; })
-      .style("fill-opacity", 1e-6);
+      //.style("fill-opacity", 1e-6)
+      ;
 
-  // Transition nodes to their new position.
-  var nodeUpdate = node.transition()
+  // Transition nodes to their new position. $acnew
+  nodeEnter.transition()
+    .duration(duration1)
+    .attr("transform", function(d) { return "translate(" + d.y + "," + d.x + ")"; })
+        .style("opacity", 1)
+      .select("circle")
+      .attr("r", function(d){ if(d.target>0 & d.target<50) { return 3} else if(d.target>=50 & d.target<200) { return 5} 
+        else if(d.target>=200 & d.target<400) { return 7} else if(d.target>=400 & d.target<800) { return 9} else if(d.target>=800 & d.target<1200) { return 11} else if(d.target>=1200) { return 13} else {return 4.5}  })
+      .style("fill", function(d){ if(d.value==0) { return "green"} else if(d.value==1) { return "yellow"} 
+        else if(d.value==2) { return "red"} else {return "lightsteelblue"} });
+      
+    node.transition()
+      .duration(duration)
+      .attr("transform", function(d) { return "translate(" + d.y + "," + d.x + ")"; })
+      .style("opacity", 1);
+    
+
+  node.exit().transition()
+      .duration(duration)
+      .attr("transform", function(d) { return "translate(" + source.y + "," + source.x + ")"; })
+      .style("opacity", 1e-6)
+      .remove();
+
+
+
+  // wasTransition nodes to their new position.
+  /*var nodeUpdate = node.transition()
       .duration(duration)
       .attr("transform", function(d) { return "translate(" + d.y + "," + d.x + ")"; });
 
   nodeUpdate.select("circle")
-      .attr("r", 4.5)
-      //.style("fill", function(d) { return d._children ? "lightsteelblue" : "#fff"; });
-      .style("fill", function(d){ if(d.value==0) { return "green"} else if(d.value==1) { return "orange"} 
-        else if(d.value==2) { return "red"} else {console.log("status: ", d.value);return "lightsteelblue"} });
+      //.attr("r", 4.5)
+      //.attr("r", function(d){ if(d.target>0 & d.target<50) { return 3} else if(d.target>=50 & d.target<200) { return 5} 
+      //  else if(d.target>=200 & d.target<500) { return 6} else if(d.target>=500 & d.target<1000) { return 8} else if(d.target>//=1000) { return 10} else {return 3}  })
+      //.style("fill", function(d){ if(d.value==0) { return "green"} else if(d.value==1) { return "yellow"} 
+      //  else if(d.value==2) { return "red"} else {return "lightsteelblue"} });
+      .attr("r", function(d){ if(d.target>0 & d.target<50) { return 3} else if(d.target>=50 & d.target<200) { return 5} 
+        else if(d.target>=200 & d.target<400) { return 7} else if(d.target>=400 & d.target<800) { return 9} else if(d.target>=800 & d.target<1200) { return 11} else if(d.target>=1200) { return 13} else {return 3}  })
+      .style("fill", function(d){ if(d.value==0) { return "green"} else if(d.value==1) { return "yellow"} 
+        else if(d.value==2) { return "red"} else {return "lightsteelblue"} });
 
   nodeUpdate.select("text")
       .style("fill-opacity", 1);
@@ -178,6 +225,7 @@ function update(source) {
 
   nodeExit.select("text")
       .style("fill-opacity", 1e-6);
+*/
 
   // Update the links…
   var link = svg.selectAll("path.link")
@@ -186,10 +234,15 @@ function update(source) {
   // Enter any new links at the parent's previous position.
   link.enter().insert("path", "g")
       .attr("class", "link")
+      .attr("stroke", function(d){ if(d.target.target==0 & d.target.value==0) {return "green"} else if(d.target.target==0 & d.target.value==1){ return "yellow"} else if(d.target.target==0 & d.target.value==2){return "red"} else { return "#ccc"}})
+      
       .attr("d", function(d) {
         var o = {x: source.x0, y: source.y0};
         return diagonal({source: o, target: o});
-      });
+      })
+      .transition()
+      .duration(duration)
+      .attr("d", diagonal);
 
   // Transition links to their new position.
   link.transition()
@@ -223,5 +276,7 @@ function click(d) {
   }
   update(d);
 }
+
+d3.select(self.frameElement).style("height", "2000px");
 
 </script>

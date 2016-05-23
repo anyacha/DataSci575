@@ -11,32 +11,36 @@
 }
 .link {
   fill: none;
-  stroke: #ccc;
+  //stroke: #ccc;
   stroke-width: 1.5px;
+}
+.red {
+  color: #003366;
 }
 </style>
 <body>
+<h2>Water points by Region and LGA: aggregated by status</h2>
+<h4>Full tree, radial layout (no collapsable nodes)<h4>
 <script src="//d3js.org/d3.v3.min.js"></script>
 <script>
-/* v1.  
-previously: in  mytree_radial_layout_bostock.html
-tfound a file that works with csv, but not collapsable 
-title: Reingold–Tilford Tree
+/* v2.  
+previously: in  mytree_radial_layout_bostock1.html
 src: https://bl.ocks.org/mbostock/4063550, https://bl.ocks.org/mbostock/4339184
+switch more extensive water hierarchy
 
-mysteps:
-1) switched from json to csv, switched csv format from name, parent to source, target
-2) added code to convert to treemap
-3) updated root element with root = treeData[0]; //flare; 
-works
+this version: switch more extensive water hierarchy
+get real data, no more mockups
+have 2 levels: region and LGA
+final nodes: dynamic size and color
+final links: dynamic color for 0
+static version of the tree
+swith to water with value csv file, display node values by 3 classificaiton colors
 
-this version: cwith more extensive water hierarchy
-
-next: swith to water with value csv file, display node values by 3 classificaiton colors
+next?
 */
-var margin = {top: 20, right: 120, bottom: 20, left: 120},
+var margin = {top: 10, right: 120, bottom: 10, left: 120},
     width = 960 - margin.right - margin.left,
-    height = 800 - margin.top - margin.bottom;
+    height = 1200 - margin.top - margin.bottom;
 
 var diameter = 1080;
 var tree = d3.layout.tree()
@@ -46,7 +50,7 @@ var diagonal = d3.svg.diagonal.radial()
     .projection(function(d) { return [d.y, d.x / 180 * Math.PI]; });
 var svg = d3.select("body").append("svg")
     .attr("width", diameter)
-    .attr("height", diameter - 150)
+    .attr("height", diameter + 50)
   .append("g")
     .attr("transform", "translate(" + diameter / 2 + "," + diameter / 2 + ")");
 //d3.json("flare.json", function(error, root) {
@@ -87,12 +91,15 @@ d3.csv("dynamic_data_water.csv", function(error, water) {
   root.x0 = height / 2;
   root.y0 = 0;
 
+
+
   var nodes = tree.nodes(root),
       links = tree.links(nodes);
   var link = svg.selectAll(".link")
       .data(links)
     .enter().append("path")
       .attr("class", "link")
+      .attr("stroke", function(d){ if(d.target.target==0 & d.target.value==0) {return "green"} else if(d.target.target==0 & d.target.value==1){ return "yellow"} else if(d.target.target==0 & d.target.value==2){return "red"} else { return "#ccc"}})
       .attr("d", diagonal);
   var node = svg.selectAll(".node")
       .data(nodes)
@@ -100,9 +107,16 @@ d3.csv("dynamic_data_water.csv", function(error, water) {
       .attr("class", "node")
       .attr("transform", function(d) { return "rotate(" + (d.x - 90) + ")translate(" + d.y + ")"; })
   node.append("circle")
-      .attr("r", 4.5)
-      .style("fill", function(d){ if(d.value==0) { return "green"} else if(d.value==1) { return "orange"} 
-        else if(d.value==2) { return "red"} else {console.log("status: ", d.value);return "lightsteelblue"} });
+      //.attr("r", 4.5)
+      //.attr("r", function(d){ if(d.target>0 & d.target<50) { return 3} else if(d.target>=50 & d.target<200) { return 5} 
+      //  else if(d.target>=200 & d.target<500) { return 6} else if(d.target>=500 & d.target<1000) { return 8} else if(d.target>//=1000) { return 10} else {return 3}  })
+      //.style("fill", function(d){ if(d.value==0) { return "green"} else if(d.value==1) { return "yellow"} 
+      //  else if(d.value==2) { return "red"} else {return "lightsteelblue"} });
+      .attr("r", function(d){ if(d.target>0 & d.target<50) { return 3} else if(d.target>=50 & d.target<200) { return 5} 
+        else if(d.target>=200 & d.target<400) { return 7} else if(d.target>=400 & d.target<800) { return 9} else if(d.target>=800 & d.target<1200) { return 11} else if(d.target>=1200) { return 13} else {return 3}  })
+      .style("fill", function(d){ if(d.value==0) { return "green"} else if(d.value==1) { return "yellow"} 
+        else if(d.value==2) { return "red"} else {return "lightsteelblue"} });
+
   node.append("text")
       .attr("dy", ".31em")
       .attr("text-anchor", function(d) { return d.x < 180 ? "start" : "end"; })

@@ -1,0 +1,236 @@
+<!DOCTYPE html>
+<meta charset="utf-8">
+<style>
+.node {
+  cursor: pointer;
+}
+
+.node circle {
+  fill: #fff;
+  stroke: steelblue;
+  stroke-width: 1.5px;
+}
+
+.node text {
+  font: 10px sans-serif;
+}
+
+.link {
+  fill: none;
+  //stroke: #ccc;
+  stroke-width: 1.5px;
+}
+</style>
+<body>
+<h2>Water points by Region and LGA: aggregated by status</h2>
+<h4>Tree radial layout, collapsable nodes<h4>
+
+<script src="//d3js.org/d3.v3.min.js"></script>
+<script>
+/* v3.  
+previously: in  mytree_radial_collapsable_ramimba2.html
+file: google result: Collapsible Radial Reingold–Tilford Tree - JSFiddle
+src: http://jsfiddle.net/rabimba/WbTKr/
+convert csv format: from name,parent to source,target ?; and more extensive water hierarchy
+simulated data
+swith to water with value csv file, display node values by 3 classificaiton colors
+full data
+dynamic links, and size and color of end nodes
+
+this version: work on better layout, wider circle
+
+next: 
+*/
+
+var diameter = 1000;
+
+var margin = {top: 20, right: 100, bottom: 20, left: 100},
+    width = diameter,
+    height = diameter;
+    
+var i = 0,
+    duration = 500,
+    duration1=1500,
+    root;
+
+var tree = d3.layout.tree()
+    .size([360, diameter / 2 - 80])
+    .separation(function(a, b) { return (a.source == b.source ? 1 : 10) / a.depth; }); //$ac
+
+var diagonal = d3.svg.diagonal.radial()
+    .projection(function(d) { return [d.y, d.x / 180 * Math.PI]; });
+
+var svg = d3.select("body").append("svg")
+    .attr("width", width )
+    .attr("height", height )
+  .append("g")
+    .attr("transform", "translate(" + diameter / 2 + "," + diameter / 2 + ")");
+
+//d3.csv("mydata_water_geohier.csv", function(error, water) {
+d3.csv("dynamic_data_water.csv", function(error, water) {
+
+  if (error) throw error;
+  // *********** Convert flat data into a nice tree ***************
+  // create a name: node map
+  var dataMap = water.reduce(function(map, node) {
+    map[node.target] = node;
+    return map;
+  }, {});
+
+  // create the tree array
+  var treeData = [];
+  water.forEach(function(node) {
+    // add to parent
+    var parent = dataMap[node.source];
+    if (parent) {
+      // create child array if it doesn't exist
+      (parent.children || (parent.children = []))
+        // add node to child array
+        .push(node);
+    } else {
+      // parent is null or missing
+      treeData.push(node);
+    }
+  });
+
+
+  console.log("treedata: ", treeData)
+
+  root = treeData[0]; //flare;
+  root.x0 = height / 2;
+  root.y0 = 0;
+  
+  root.children.forEach(collapse); // start with all children collapsed
+  update(root);
+  /* was
+root = pubs;
+root.x0 = height / 2;
+root.y0 = 0; 
+
+*/
+
+});
+
+
+d3.select(self.frameElement).style("height", "800px");
+
+function update(source) {
+
+  // Compute the new tree layout.
+  var nodes = tree.nodes(root),
+      links = tree.links(nodes);
+
+  // Normalize for fixed-depth.
+  nodes.forEach(function(d) { d.y = d.depth * 150; });
+
+  // Update the nodes…
+  var node = svg.selectAll("g.node")
+      .data(nodes, function(d) { return d.id || (d.id = ++i); });
+
+  // Enter any new nodes at the parent's previous position.
+  var nodeEnter = node.enter().append("g")
+      .attr("class", "node")
+      //.attr("transform", function(d) { return "rotate(" + (d.x - 90) + ")translate(" + d.y + ")"; })
+      .on("click", click);
+
+  nodeEnter.append("circle")
+      .attr("r", 1e-6)
+      .style("fill", function(d) { return d._children ? "lightsteelblue" : "#fff"; });
+
+  nodeEnter.append("text")
+      .attr("x", 10)
+      .attr("dy", ".35em")
+      .attr("text-anchor", "start")
+      //.attr("transform", function(d) { return d.x < 180 ? "translate(0)" : "rotate(180)translate(-" + (d.name.length * 8.5)  + ")"; })
+      .text(function(d) { return d.target; }) //$ac
+      .style("fill-opacity", 1e-6)
+      /*.attr("dy", ".31em")
+      .attr("text-anchor", function(d) { return d.x < 180 ? "start" : "end"; })
+      .attr("transform", function(d) { return d.x < 180 ? "translate(8)" : "rotate(180)translate(-8)"; })
+      .text(function(d) { return d.target; });*/
+
+  // Transition nodes to their new position.
+  var nodeUpdate = node.transition()
+      .duration(duration)
+      .attr("transform", function(d) { return "rotate(" + (d.x - 90) + ")translate(" + d.y + ")"; })
+
+  nodeUpdate.select("circle")
+      //.attr("r", 4.5)
+      //$actodo: fix fill for no children, look at base file
+      .attr("r", function(d){ if(d.target>0 & d.target<50) { return 3} else if(d.target>=50 & d.target<200) { return 5} 
+        else if(d.target>=200 & d.target<400) { return 7} else if(d.target>=400 & d.target<800) { return 9} else if(d.target>=800 & d.target<1200) { return 11} else if(d.target>=1200) { return 13} else {return 4.5}  })
+      .style("fill", function(d){ if(d.value==0) { return "green"} else if(d.value==1) { return "yellow"} 
+        else if(d.value==2) { return "red"} else {return "lightsteelblue"} });
+
+  nodeUpdate.select("text")
+      .style("fill-opacity", 1)
+      .attr("transform", function(d) { return d.x < 180 ? "translate(0)" : "rotate(180)translate(-" + (d.target.length + 50)  + ")"; }); //$ac
+
+  // TODO: appropriate transform
+  var nodeExit = node.exit().transition()
+      .duration(duration)
+      //.attr("transform", function(d) { return "diagonal(" + source.y + "," + source.x + ")"; })
+      .remove();
+
+  nodeExit.select("circle")
+      .attr("r", 1e-6);
+
+  nodeExit.select("text")
+      .style("fill-opacity", 1e-6);
+
+  // Update the links…
+  var link = svg.selectAll("path.link")
+      .data(links, function(d) { return d.target.id; });
+
+  // Enter any new links at the parent's previous position.
+  link.enter().insert("path", "g")
+      .attr("class", "link")
+      .attr("stroke", function(d){ if(d.target.target==0 & d.target.value==0) {return "green"} else if(d.target.target==0 & d.target.value==1){ return "yellow"} else if(d.target.target==0 & d.target.value==2){return "red"} else { return "#ccc"}})
+      .attr("d", function(d) {
+        var o = {x: source.x0, y: source.y0};
+        return diagonal({source: o, target: o});
+      });
+
+  // Transition links to their new position.
+  link.transition()
+      .duration(duration)
+      .attr("d", diagonal);
+
+  // Transition exiting nodes to the parent's new position.
+  link.exit().transition()
+      .duration(duration)
+      .attr("d", function(d) {
+        var o = {x: source.x, y: source.y};
+        return diagonal({source: o, target: o});
+      })
+      .remove();
+
+  // Stash the old positions for transition.
+  nodes.forEach(function(d) {
+    d.x0 = d.x;
+    d.y0 = d.y;
+  });
+}
+
+// Toggle children on click.
+function click(d) {
+  if (d.children) {
+    d._children = d.children;
+    d.children = null;
+  } else {
+    d.children = d._children;
+    d._children = null;
+  }
+  
+  update(d);
+}
+
+// Collapse nodes
+function collapse(d) {
+  if (d.children) {
+      d._children = d.children;
+      d._children.forEach(collapse);
+      d.children = null;
+    }
+}
+</script>
